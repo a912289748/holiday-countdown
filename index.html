@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>距离下一个假期还有</title>
+  <title>再坚持一下，元旦就到了</title>
   <style>
     :root {
       --bg: #0f1419;
@@ -172,10 +172,10 @@
 </head>
 <body>
   <div class="container">
-    <div class="badge">🇨🇳 法定节假日倒计时</div>
-    <h1>距离下一个假期还有</h1>
-    <div class="holiday-name" id="holidayName">—</div>
-    <div class="holiday-range" id="holidayRange">—</div>
+    <div class="badge">🎆 目标：2027 元旦</div>
+    <h1 id="headline">再坚持一下，元旦就到了</h1>
+    <div class="holiday-name" id="holidayName">2027 · 元旦</div>
+    <div class="holiday-range" id="holidayRange">2027 年 1 月 1 日 00:00 · 北京时间</div>
 
     <div class="countdown">
       <div class="unit"><div class="value" id="days">—</div><div class="label">天</div></div>
@@ -188,110 +188,35 @@
     <div class="progress-text" id="progressText">—</div>
 
     <div class="next-list">
-      <h2>后续假期一览</h2>
-      <ul id="upcomingList"></ul>
+      <h2>给正在坚持的你</h2>
+      <p style="line-height:1.9;color:var(--muted)">日子有点难熬，那就一天一天来。<br>每过一秒，都离新年更近一点。🌅</p>
     </div>
 
-    <footer>数据来源：国务院办公厅节假日安排 · 自动识别最近假期</footer>
+    <footer>固定倒数至 2027 年元旦零点 · 不代表具体调休安排</footer>
   </div>
 
   <script>
-    const HOLIDAYS = [
-      { name: "元旦",   start: "2026-01-01", end: "2026-01-03", days: 3 },
-      { name: "春节",   start: "2026-02-15", end: "2026-02-23", days: 9 },
-      { name: "清明节", start: "2026-04-04", end: "2026-04-06", days: 3 },
-      { name: "劳动节", start: "2026-05-01", end: "2026-05-05", days: 5 },
-      { name: "端午节", start: "2026-06-19", end: "2026-06-21", days: 3 },
-      { name: "中秋节", start: "2026-09-25", end: "2026-09-27", days: 3 },
-      { name: "国庆节", start: "2026-10-01", end: "2026-10-07", days: 7 },
-      { name: "元旦",   start: "2027-01-01", end: "2027-01-01", days: 1 },
-      { name: "春节",   start: "2027-02-05", end: "2027-02-11", days: 7 },
-      { name: "清明节", start: "2027-04-05", end: "2027-04-05", days: 1 },
-      { name: "劳动节", start: "2027-05-01", end: "2027-05-02", days: 2 },
-      { name: "端午节", start: "2027-06-07", end: "2027-06-09", days: 3 },
-      { name: "中秋节", start: "2027-09-15", end: "2027-09-17", days: 3 },
-      { name: "国庆节", start: "2027-10-01", end: "2027-10-07", days: 7 },
-    ];
-
-    function parseDate(dateStr) {
-      const [y, m, d] = dateStr.split("-").map(Number);
-      return new Date(y, m - 1, d, 0, 0, 0, 0);
-    }
-
-    function formatRange(h) {
-      const s = h.start.replace(/-/g, ".");
-      const e = h.end.replace(/-/g, ".");
-      return s === e ? `${s} · 休 ${h.days} 天` : `${s} — ${e} · 休 ${h.days} 天`;
-    }
-
+    const TARGET = new Date("2027-01-01T00:00:00+08:00").getTime();
+    const START = new Date("2026-10-08T00:00:00+08:00").getTime();
     function pad(n) { return String(n).padStart(2, "0"); }
-
-    function getNextHoliday(now) {
-      for (const h of HOLIDAYS) {
-        const start = parseDate(h.start);
-        const end = parseDate(h.end);
-        end.setHours(23, 59, 59, 999);
-        if (now <= end) return { holiday: h, start, end, isDuring: now >= start };
-      }
-      return null;
-    }
-
-    function daysBetween(a, b) {
-      return Math.ceil((b - a) / (1000 * 60 * 60 * 24));
-    }
-
-    function renderUpcoming(now, current) {
-      const list = document.getElementById("upcomingList");
-      list.innerHTML = "";
-      const upcoming = HOLIDAYS.filter(h => parseDate(h.end) >= now).slice(0, 5);
-      for (const h of upcoming) {
-        const li = document.createElement("li");
-        if (current && h.start === current.start && h.name === current.name) li.classList.add("active");
-        const left = document.createElement("span");
-        left.textContent = `${h.name} · ${formatRange(h)}`;
-        const right = document.createElement("span");
-        right.className = "days-away";
-        const diff = daysBetween(now, parseDate(h.start));
-        right.textContent = diff <= 0 && now <= parseDate(h.end) ? "进行中 🎉" : `${diff} 天后`;
-        li.append(left, right);
-        list.appendChild(li);
-      }
-    }
-
     function tick() {
-      const now = new Date();
-      const next = getNextHoliday(now);
-      if (!next) return;
-
-      const { holiday, start, end, isDuring } = next;
-
-      document.getElementById("holidayName").textContent = isDuring ? `${holiday.name} · 假期进行中` : holiday.name;
-      document.getElementById("holidayRange").textContent = formatRange(holiday);
-
-      const target = isDuring ? end : start;
-      let diff = target - now;
-      if (diff < 0) diff = 0;
-
+      const now = Date.now();
+      const diff = Math.max(0, TARGET - now);
       document.getElementById("days").textContent = pad(Math.floor(diff / 86400000));
       document.getElementById("hours").textContent = pad(Math.floor((diff % 86400000) / 3600000));
       document.getElementById("minutes").textContent = pad(Math.floor((diff % 3600000) / 60000));
       document.getElementById("seconds").textContent = pad(Math.floor((diff % 60000) / 1000));
-
-      const prevEnd = HOLIDAYS.filter(x => parseDate(x.end) < start).pop();
-      const windowStart = prevEnd ? parseDate(prevEnd.end) : new Date(start.getFullYear(), start.getMonth() - 2, 1);
-      const total = start - windowStart;
-      const elapsed = now - windowStart;
-      const pct = isDuring ? 100 : Math.min(100, Math.max(0, (elapsed / total) * 100));
+      const pct = Math.min(100, Math.max(0, (now - START) / (TARGET - START) * 100));
       document.getElementById("progressBar").style.width = pct + "%";
-      document.getElementById("progressText").textContent = isDuring
-        ? "享受假期吧！结束后将自动切换到下一个倒计时"
-        : `已等待 ${Math.round(pct)}%，坚持住！`;
-
-      renderUpcoming(now, holiday);
+      document.getElementById("progressText").textContent = diff === 0
+        ? "新年快乐！你已经走到了这一天，辛苦啦 🎉"
+        : `从国庆假期结束到元旦，已经走过 ${Math.floor(pct)}% · 今天也在靠近终点`;
+      document.getElementById("headline").textContent = diff === 0
+        ? "元旦到了，新年快乐！"
+        : "再坚持一下，元旦就到了";
     }
-
     tick();
     setInterval(tick, 1000);
-  </script>
+</script>
 </body>
 </html>
