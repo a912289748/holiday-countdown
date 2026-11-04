@@ -168,7 +168,35 @@
       .countdown { gap: 8px; }
       .unit { padding: 14px 4px; border-radius: 12px; }
     }
-  </style>
+  
+.ai-plan { margin-top:56px; text-align:left; }
+.ai-plan > .badge { margin-bottom:14px; }
+.ai-plan h2 { font-size:clamp(1.5rem,5vw,2rem); line-height:1.4; }
+.plan-intro { color:var(--muted);line-height:1.9;margin:14px 0 22px; }
+.rhythm,.plan-meter { background:var(--card);border:1px solid #ffffff12;border-radius:16px;padding:22px;margin:18px 0; }
+.ai-plan h3 { font-size:1rem;margin-bottom:12px; }
+.rhythm p { line-height:1.9;color:var(--muted);margin-top:10px; }
+.rhythm b { color:var(--text); }
+.meter-heading { display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap; }
+#plan-count { color:var(--accent-soft); }
+progress { width:100%;height:14px;accent-color:var(--accent); }
+#storage-status { color:var(--muted);font-size:.8rem;line-height:1.7;margin-top:10px; }
+.week { border:1px solid #ffffff16;border-radius:16px;margin:14px 0;background:var(--card);overflow:hidden; }
+.week summary { cursor:pointer;padding:20px; }
+.week summary strong { display:block;margin:8px 0;line-height:1.5; }
+.week-date,.week-status { color:var(--muted);font-size:.85rem; }
+.week-body { padding:0 20px 20px; }
+.week-goal { color:var(--accent-soft);line-height:1.8;margin-bottom:12px; }
+.task { display:flex;gap:12px;padding:15px 0;border-top:1px solid #ffffff0c;cursor:pointer; }
+.task input { width:20px;height:20px;flex-shrink:0;margin-top:3px;accent-color:var(--accent); }
+.task b { display:block;line-height:1.6; }
+.task small { display:block;color:var(--muted);font-size:.9rem;line-height:1.9;margin-top:4px; }
+.task:has(input:checked) b { color:#a1d9b7; }
+.deliverable { padding:14px;background:#ffffff06;border-radius:10px;line-height:1.8;font-size:.9rem;margin:12px 0; }
+textarea { width:100%;min-height:100px;resize:vertical;background:var(--bg);border:1px solid #ffffff22;border-radius:10px;color:var(--text);padding:12px;font:inherit;font-size:.9rem;line-height:1.7; }
+input:focus-visible,summary:focus-visible,textarea:focus-visible { outline:2px solid var(--accent-soft);outline-offset:4px; }
+@media(max-width:480px) { body{padding:18px;} .rhythm,.plan-meter{padding:18px;} .week summary{padding:18px;} .week-body{padding:0 18px 18px;} }
+</style>
 </head>
 <body>
   <div class="container">
@@ -192,6 +220,16 @@
       <p style="line-height:1.9;color:var(--muted)">日子有点难熬，那就一天一天来。<br>每过一秒，都离新年更近一点。🌅</p>
     </div>
 
+
+<section class="ai-plan" aria-labelledby="plan-title">
+<div class="badge">从现在到元旦 · AI 求职行动计划</div>
+<h2 id="plan-title">把这两个月，变成自己的底气</h2>
+<p class="plan-intro">2026.11.04 — 12.31 ｜ 面向 AI 应用开发 / Agent 开发 / Python 后端（大模型方向）<br>以 mewcode-python 为主线，练代码、练表达、做作品，也给生活留空间。</p>
+<div class="rhythm"><h3>每天怎么安排</h3><p><b>普通日 · 35 分钟：</b>20 分钟读代码或实现一个小点，10 分钟口述一道面试题，5 分钟记下收获。</p><p><b>疲惫日 · 10 分钟：</b>只复述一个流程或看懂一个函数。特别累就休息，不欠学习债。</p><p><b>周末 · 90 分钟：</b>选一天做实践和验证，另留至少半天彻底休息；每周安排一件期待的小事。</p><p><b>节奏原则：</b>每周约 4—5 小时；任务超时先缩小范围，没做完可顺延。不占用本职工作的必要时间，不承诺两个月一定拿到 offer。</p></div>
+<div class="plan-meter"><div class="meter-heading"><h3>我的行动进度</h3><span id="plan-count">0 项完成</span></div><progress id="plan-progress" max="34" value="0" aria-label="计划任务完成进度"></progress><p id="storage-status">勾选和复盘仅保存在当前浏览器，不会同步到 GitHub 或其他设备。</p></div>
+<details class="week" open><summary><span class="week-date">11.04—11.10 · 第 1 周</span><strong>跑通项目，讲清 Agent 主循环</strong><span class="week-status" id="week-status-0"></span></summary><div class="week-body"><p class="week-goal">能用自己的话解释一次任务如何完成。</p><label class="task"><input type="checkbox" data-task="0-0"><span><b>画出一次完整调用</b><small>从入口跟到 Agent 循环，标出模型请求、工具执行、结果回写和结束条件；画一张流程图。</small></span></label><label class="task"><input type="checkbox" data-task="0-1"><span><b>跑通一个最小任务</b><small>配置本地模型访问，完成“读取一个文件并解释”；记录启动方式与一个真实报错，不把密钥提交到仓库。</small></span></label><label class="task"><input type="checkbox" data-task="0-2"><span><b>追踪一次修复任务</b><small>在练习分支让 Agent 修复一个小问题，保存工具调用顺序、实际 diff 和验证结果。</small></span></label><label class="task"><input type="checkbox" data-task="0-3"><span><b>练熟一分钟介绍</b><small>录音回答项目解决什么问题、架构、你的贡献；明确借鉴部分与自己实现的部分。</small></span></label><p class="deliverable">本周成果：一张流程图 + 可复现运行说明 + 60 秒项目介绍</p><textarea aria-label="第 1 阶段复盘" data-note="0" placeholder="本周学会了什么？卡在哪里？下次面试要改哪一点？"></textarea></div></details><details class="week" ><summary><span class="week-date">11.11—11.17 · 第 2 周</span><strong>工具调用、权限与文件编辑</strong><span class="week-status" id="week-status-1"></span></summary><div class="week-body"><p class="week-goal">把“知道模块”变成“解释得了代码”。</p><label class="task"><input type="checkbox" data-task="1-0"><span><b>追踪工具生命周期</b><small>阅读工具注册、参数模型、权限检查与执行入口，写清模型只生成调用、程序实际执行。</small></span></label><label class="task"><input type="checkbox" data-task="1-1"><span><b>验证先读后改</b><small>读一个文件后在外部改动，再调用 EditFile，观察 mtime 校验拒绝；重新读取后再修改。</small></span></label><label class="task"><input type="checkbox" data-task="1-2"><span><b>检查命令权限</b><small>用无破坏的命令验证允许、询问、拒绝三种结果；说明白名单、黑名单、计划模式的实际优先级。</small></span></label><label class="task"><input type="checkbox" data-task="1-3"><span><b>复习 Python 基础</b><small>动手比较 asyncio.Lock、threading.Lock 与进程文件锁的适用范围；练习 async/await、异常传播。</small></span></label><p class="deliverable">本周成果：一份工具执行时序图 + 三个权限案例 + 文件冲突复现记录</p><textarea aria-label="第 2 阶段复盘" data-note="1" placeholder="本周学会了什么？卡在哪里？下次面试要改哪一点？"></textarea></div></details><details class="week" ><summary><span class="week-date">11.18—11.24 · 第 3 周</span><strong>上下文、记忆与流式输出</strong><span class="week-status" id="week-status-2"></span></summary><div class="week-body"><p class="week-goal">讲清成本、延迟和信息保留的取舍。</p><label class="task"><input type="checkbox" data-task="2-0"><span><b>复现大工具结果</b><small>生成练习日志，观察预览、文件落盘与按需回读；解释 exempt_ids 防止什么循环。</small></span></label><label class="task"><input type="checkbox" data-task="2-1"><span><b>跟读压缩逻辑</b><small>说明软硬阈值、近期原文保留、摘要重试与熔断；把代码实际行为与注释逐一核对。</small></span></label><label class="task"><input type="checkbox" data-task="2-2"><span><b>区分记忆与历史</b><small>找出会话历史、压缩摘要、长期记忆分别在哪里保存、何时加载；记录过期信息的风险。</small></span></label><label class="task"><input type="checkbox" data-task="2-3"><span><b>理解流式事件</b><small>跟踪文本增量、工具参数与完成事件；解释 UI 如何显示过程、取消时如何处理。</small></span></label><p class="deliverable">本周成果：一张上下文策略表 + 大日志实验 + 3 分钟技术讲解</p><textarea aria-label="第 3 阶段复盘" data-note="2" placeholder="本周学会了什么？卡在哪里？下次面试要改哪一点？"></textarea></div></details><details class="week" ><summary><span class="week-date">11.25—12.01 · 第 4 周</span><strong>实现你自己的可靠性改进</strong><span class="week-status" id="week-status-3"></span></summary><div class="week-body"><p class="week-goal">交付一个能展示、能解释的真实贡献。</p><label class="task"><input type="checkbox" data-task="3-0"><span><b>写清失败场景</b><small>限定为文件修改：操作成功后结果记录前中断。先定义什么是同一次调用、怎样恢复。</small></span></label><label class="task"><input type="checkbox" data-task="3-1"><span><b>实现调用记录</b><small>为同一次调用保留稳定 ID，持久化状态和结果；已完成的调用直接复用结果。</small></span></label><label class="task"><input type="checkbox" data-task="3-2"><span><b>处理不确定状态</b><small>保存修改前后内容哈希；恢复时核对磁盘状态，不匹配就停止并提示核实。明确不覆盖任意 Shell 命令。</small></span></label><label class="task"><input type="checkbox" data-task="3-3"><span><b>验证故障恢复</b><small>验证正常成功、同一 ID 重试、修改后中断、外部修改四种场景；写下剩余并发与原子性限制。</small></span></label><p class="deliverable">本周成果：一个小 PR 或清晰提交 + 故障验证记录 + 设计取舍说明</p><textarea aria-label="第 4 阶段复盘" data-note="3" placeholder="本周学会了什么？卡在哪里？下次面试要改哪一点？"></textarea></div></details><details class="week" ><summary><span class="week-date">12.02—12.08 · 第 5 周</span><strong>做一个可演示的 AI 接口</strong><span class="week-status" id="week-status-4"></span></summary><div class="week-body"><p class="week-goal">补齐应用开发岗位需要的后端交付能力。</p><label class="task"><input type="checkbox" data-task="4-0"><span><b>提供最小 API</b><small>用 FastAPI 暴露一个文本任务接口，做输入校验和统一错误响应；先支持单用户本地演示。</small></span></label><label class="task"><input type="checkbox" data-task="4-1"><span><b>接入流式响应</b><small>用 SSE 返回文本和工具执行状态，处理断开连接、超时与取消，避免遗留后台任务。</small></span></label><label class="task"><input type="checkbox" data-task="4-2"><span><b>补充运行观测</b><small>记录 request_id、耗时、模型用量与工具错误；不记录密钥，日志中的用户内容做必要处理。</small></span></label><label class="task"><input type="checkbox" data-task="4-3"><span><b>准备演示脚本</b><small>录一个两分钟演示：提交任务、查看过程、展示结果及一次失败提示；写启动步骤。</small></span></label><p class="deliverable">本周成果：可运行 API + 两分钟演示 + 清晰 README</p><textarea aria-label="第 5 阶段复盘" data-note="4" placeholder="本周学会了什么？卡在哪里？下次面试要改哪一点？"></textarea></div></details><details class="week" ><summary><span class="week-date">12.09—12.15 · 第 6 周</span><strong>补齐 RAG 基础，开始投递</strong><span class="week-status" id="week-status-5"></span></summary><div class="week-body"><p class="week-goal">能讨论检索方案，同时进入真实招聘反馈。</p><label class="task"><input type="checkbox" data-task="5-0"><span><b>做一个小型知识库</b><small>选项目文档作数据，实践切分、向量化、检索和带来源回答；保持为独立小实验。</small></span></label><label class="task"><input type="checkbox" data-task="5-1"><span><b>评估检索效果</b><small>自建 10 个有参考出处的问题，记录是否检索到正确段落、答案是否有依据以及耗时。</small></span></label><label class="task"><input type="checkbox" data-task="5-2"><span><b>比较三种方案</b><small>解释 grep、向量检索和混合检索适用场景；会说明 chunk、top-k、重排与无答案处理。</small></span></label><label class="task"><input type="checkbox" data-task="5-3"><span><b>完成简历并投递</b><small>只写可证明的贡献，不编指标；筛选 AI 应用、Agent、Python 后端岗位，先投 3—5 个匹配岗位。</small></span></label><p class="deliverable">本周成果：10 题评估表 + 一页简历 + 第一批投递记录</p><textarea aria-label="第 6 阶段复盘" data-note="5" placeholder="本周学会了什么？卡在哪里？下次面试要改哪一点？"></textarea></div></details><details class="week" ><summary><span class="week-date">12.16—12.22 · 第 7 周</span><strong>模拟面试与针对性补弱</strong><span class="week-status" id="week-status-6"></span></summary><div class="week-body"><p class="week-goal">从说得出术语，到能接住两层追问。</p><label class="task"><input type="checkbox" data-task="6-0"><span><b>做两次项目模拟</b><small>每次 25 分钟：项目介绍、主循环、权限、上下文、重试、worktree；回答后再对照代码。</small></span></label><label class="task"><input type="checkbox" data-task="6-1"><span><b>练三次 Python 小题</b><small>围绕异步并发、超时取消、JSON 解析和文件处理，每次 20—30 分钟，讲清错误边界。</small></span></label><label class="task"><input type="checkbox" data-task="6-2"><span><b>完成一次方案设计</b><small>设计“多人使用的编程 Agent”：讨论会话隔离、任务队列、权限、用量与观测，区分已有和设想。</small></span></label><label class="task"><input type="checkbox" data-task="6-3"><span><b>根据岗位调整投递</b><small>新增 3—5 个匹配岗位，整理真实面试问题；没有反馈就检查岗位匹配和简历证据。</small></span></label><p class="deliverable">本周成果：两次模拟复盘 + 三个可运行练习 + 更新后的简历</p><textarea aria-label="第 7 阶段复盘" data-note="6" placeholder="本周学会了什么？卡在哪里？下次面试要改哪一点？"></textarea></div></details><details class="week" ><summary><span class="week-date">12.23—12.29 · 第 8 周</span><strong>整理作品，完成面试冲刺</strong><span class="week-status" id="week-status-7"></span></summary><div class="week-body"><p class="week-goal">让陌生面试官能快速理解你的能力。</p><label class="task"><input type="checkbox" data-task="7-0"><span><b>检查作品可复现性</b><small>按 README 从头启动一次，补足环境变量示例、依赖版本、演示数据与已知限制。</small></span></label><label class="task"><input type="checkbox" data-task="7-1"><span><b>整理三个真实故事</b><small>各准备一个：故障定位、设计取舍、独立改进。按背景、行动、验证和局限讲述。</small></span></label><label class="task"><input type="checkbox" data-task="7-2"><span><b>做一次完整模拟</b><small>用 45 分钟串起介绍、代码追问、基础题与反问；只挑最影响表达的两处改进。</small></span></label><label class="task"><input type="checkbox" data-task="7-3"><span><b>跟进并保持节奏</b><small>跟进已有投递，按精力再投 3—5 个岗位；保留一个完整休息晚上，不临时扩展项目。</small></span></label><p class="deliverable">本周成果：作品入口 + 三个项目故事 + 一次完整模拟复盘</p><textarea aria-label="第 8 阶段复盘" data-note="7" placeholder="本周学会了什么？卡在哪里？下次面试要改哪一点？"></textarea></div></details><details class="week" ><summary><span class="week-date">12.30—12.31 · 收尾</span><strong>轻量复盘，迎接元旦</strong><span class="week-status" id="week-status-8"></span></summary><div class="week-body"><p class="week-goal">把进展带走，不把疲惫带满。</p><label class="task"><input type="checkbox" data-task="8-0"><span><b>整理成果与下一步</b><small>回看提交、演示、面试录音和投递反馈；列出一月最重要的三个动作。</small></span></label><label class="task"><input type="checkbox" data-task="8-1"><span><b>给自己安排休息</b><small>备份作品，收好计划，给元旦留一件真心想做的事。没有完成的任务允许延后。</small></span></label><p class="deliverable">本周成果：一份成果清单 + 一月三件事</p><textarea aria-label="第 9 阶段复盘" data-note="8" placeholder="本周学会了什么？卡在哪里？下次面试要改哪一点？"></textarea></div></details>
+<div class="rhythm interview"><h3>和我练面试，就这样开场</h3><p>“按网页第 N 周的内容，给我做 15 分钟模拟面试。一次只问一题，我回答后先指出准确与模糊的地方，再让我重答，最后追问一层。项目事实请核对代码，不替我编造经历。”</p><p><b>每道题回答顺序：</b>解决什么问题 → 实际怎么做 → 如何验证 → 有什么局限 → 我负责什么。</p><p><b>元旦前的目标：</b>一个讲得清、跑得通的项目；一个自己实现并验证的改进；一份有证据的简历；持续投递和复盘。不用什么都会，先把自己的部分讲扎实。</p></div>
+</section>
     <footer>固定倒数至 2027 年元旦零点 · 不代表具体调休安排</footer>
   </div>
 
@@ -217,6 +255,51 @@
     }
     tick();
     setInterval(tick, 1000);
+
+    const PLAN_KEY = "holiday-ai-plan-2026-v1";
+    let planState = { tasks: {}, notes: {} };
+    function storageWarning() {
+      document.getElementById("storage-status").textContent = "浏览器存储不可用，本次打卡和复盘在刷新后可能丢失。";
+    }
+    try {
+      const saved = JSON.parse(localStorage.getItem(PLAN_KEY) || "null");
+      if (saved && typeof saved === "object") {
+        if (saved.tasks && typeof saved.tasks === "object") planState.tasks = saved.tasks;
+        if (saved.notes && typeof saved.notes === "object") planState.notes = saved.notes;
+      }
+    } catch (_) { storageWarning(); }
+    function savePlan() {
+      try { localStorage.setItem(PLAN_KEY, JSON.stringify(planState)); }
+      catch (_) { storageWarning(); }
+    }
+    function updatePlanProgress() {
+      const tasks = [...document.querySelectorAll("[data-task]")];
+      const done = tasks.filter(el => el.checked).length;
+      document.getElementById("plan-count").textContent = done + " / " + tasks.length + " 项完成";
+      const progress = document.getElementById("plan-progress");
+      progress.max = tasks.length; progress.value = done;
+      document.querySelectorAll(".week").forEach((week, i) => {
+        const items = [...week.querySelectorAll("[data-task]")];
+        document.getElementById("week-status-" + i).textContent =
+          items.filter(el => el.checked).length + " / " + items.length + " 完成";
+      });
+    }
+    document.querySelectorAll("[data-task]").forEach(el => {
+      el.checked = planState.tasks[el.dataset.task] === true;
+      el.addEventListener("change", () => {
+        planState.tasks[el.dataset.task] = el.checked;
+        savePlan(); updatePlanProgress();
+      });
+    });
+    document.querySelectorAll("[data-note]").forEach(el => {
+      const note = planState.notes[el.dataset.note];
+      el.value = typeof note === "string" ? note : "";
+      el.addEventListener("input", () => {
+        planState.notes[el.dataset.note] = el.value; savePlan();
+      });
+    });
+    updatePlanProgress();
+
 </script>
 </body>
 </html>
